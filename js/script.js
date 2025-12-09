@@ -402,15 +402,21 @@ if (roomsList) {
       const room = ROOMS.find((r) => r.id === roomId);
       if (!room) return;
 
-      // التأكد من أن بيانات نموذج الحجز الأساسية مملوءة أولاً
+      // ملء حقل الدولة تلقائياً بناءً على دولة الغرفة
       const cityField = document.getElementById("city");
+      if (cityField && room.city) {
+        cityField.value = room.city;
+        // تحديث lastSearch أيضاً
+        lastSearch.city = room.city;
+      }
+
+      // التأكد من أن بيانات نموذج الحجز الأساسية مملوءة أولاً
       const checkinField = document.getElementById("checkin");
       const checkoutField = document.getElementById("checkout");
       const guestsField = document.getElementById("guests");
       const roomTypeField = document.getElementById("roomType");
 
       const isFormFilled =
-        cityField?.value &&
         checkinField?.value &&
         checkoutField?.value &&
         guestsField?.value &&
@@ -422,10 +428,9 @@ if (roomsList) {
         if (searchSection) {
           searchSection.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-        showToast("من فضلك املأ بيانات الحجز (الدولة، التواريخ، النزلاء، نوع الغرفة) أولاً");
+        showToast("تم ملء حقل الدولة تلقائياً. من فضلك املأ باقي بيانات الحجز (التواريخ، النزلاء، نوع الغرفة)");
         // تركيز على أول حقل فارغ إن وجد
         const fieldsInOrder = [
-          cityField,
           checkinField,
           checkoutField,
           guestsField,
