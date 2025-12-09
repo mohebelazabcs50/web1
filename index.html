@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حجز فندق - Hotel Booking</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container header-content">
+        <div class="logo">Stay<span>Easy</span></div>
+        <nav class="main-nav">
+          <a href="#search">البحث عن غرفة</a>
+          <a href="#rooms">الغرف المتاحة</a>
+          <a href="#about">عن الفندق</a>
+          <a href="#contact">تواصل معنا</a>
+        </nav>
+        <div class="auth-buttons">
+          <button class="btn btn-outline" id="login-btn">تسجيل دخول</button>
+          <button class="btn btn-primary" id="signup-btn">إنشاء حساب</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="overlay"></div>
+      <div class="container hero-content">
+        <h1>احجز إقامتك المثالية بسهولة</h1>
+        <p>أفضل العروض على الغرف الفندقية مع تأكيد فوري للحجز.</p>
+        <a href="#search" class="btn btn-primary">ابدأ الحجز الآن</a>
+      </div>
+    </section>
+
+    <main>
+      <!-- Search Section -->
+      <section id="search" class="section search-section">
+        <div class="container">
+          <h2>ابحث عن غرفة</h2>
+          <form id="booking-form" class="booking-form">
+            <div class="form-group">
+              <label for="city">المدينة</label>
+              <select id="city" required>
+                <option value="">اختر الدولة</option>
+                <option value="مصر">مصر</option>
+                <option value="الإمارة العربية المتحدة">الإمارة العربية المتحدة</option>
+                <option value="المملكة العربية السعودية">المملكة العربية السعودية</option>
+                <option value="تركيا">تركيا</option>
+                <option value="المغرب">المغرب</option>
+                <option value="الجزائر">الجزائر</option>
+                <option value="المغرب">المغرب</option>
+                <option value="قطر">قطر</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="checkin">تاريخ الوصول</label>
+              <input type="date" id="checkin" required />
+            </div>
+            <div class="form-group">
+              <label for="checkout">تاريخ المغادرة</label>
+              <input type="date" id="checkout" required />
+            </div>
+            <div class="form-group">
+              <label for="guests">عدد النزلاء</label>
+              <input type="number" id="guests" min="1" max="4" value="1" required />
+            </div>
+            <div class="form-group">
+              <label for="roomType">نوع الغرفة</label>
+              <select id="roomType" required>
+                <option value="">اختر نوع الغرفة</option>
+                <option value="single">منفردة</option>
+                <option value="double">مزدوجة</option>
+                <option value="twin">توأم</option>
+                <option value="triple">ثلاثية</option>
+                <option value="quad">رباعية</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">
+              عرض الغرف المتاحة
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Rooms Section -->
+      <section id="rooms" class="section rooms-section">
+        <div class="container">
+          <h2>الغرف المتاحة</h2>
+          <p class="section-subtitle">
+            اختر من بين مجموعة من الغرف المناسبة لك، ثم اضغط على زر "احجز الآن".
+          </p>
+          <div id="rooms-list" class="rooms-grid">
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section about-section">
+        <div class="container about-grid">
+          <div>
+            <h2>عن فندق StayEasy</h2>
+            <p>
+              نقدم لك تجربة إقامة فاخرة مع خدمة عالية الجودة وموقع مميز في قلب المدينة.
+              
+              جميع الغرف مجهزة بأحدث وسائل الراحة لتضمن لك إقامة لا تُنسى.
+            </p>
+            <p>
+              نحن لدينا فريق من الموظفين المهرة والمتخصصين في تقديم خدمة العملاء الممتازة.                   
+            </p>
+            <p>نحن نقدم خدمة 24 ساعة في جميع أنحاء العالم.</p>
+            <p>نحن نقدم أسعار تنافسية للحجوزات المبكرة والإقامات الطويلة.</p>
+            <p>الغرف لدينا مجهزة  وايفاي مجاني و سريع .</p>
+          </div>
+          <div class="about-highlights">
+            <div class="highlight-card">
+              <h3>موقع مميز</h3>
+              <p>بالقرب من أهم المعالم السياحية ووسائل النقل.</p>
+            </div>
+            <div class="highlight-card">
+              <h3>خدمة 24 ساعة</h3>
+              <p>فريق استقبال وخدمة غرف على مدار الساعة.</p>
+            </div>
+            <div class="highlight-card">
+              <h3>أسعار تنافسية</h3>
+              <p>عروض خاصة للحجوزات المبكرة والإقامات الطويلة.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section contact-section">
+        <div class="container contact-grid">
+          <div>
+            <h2>تواصل معنا</h2>
+            <p>للاستفسار عن أي تفاصيل إضافية، يمكنك مراسلتنا عبر النموذج التالي:</p>
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <label for="contact-name">الاسم</label>
+                <input id="contact-name" type="text" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-email">البريد الإلكتروني</label>
+                <input id="contact-email" type="email" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-message">الرسالة</label>
+                <textarea id="contact-message" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-outline full-width">
+                إرسال الرسالة
+              </button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <h3>معلومات التواصل</h3>
+            <p>الهاتف: +20 1556456456</p>
+            <p>البريد: stayeasy@gmail.com</p>
+            <p>العنوان: Cairo, Egypt</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <h2>بيانات الحجز</h2>
+        <p id="booking-summary"></p>
+
+        <form id="guest-form" class="contact-form" style="margin-top: 0.75rem">
+          <div class="form-group">
+            <label for="guest-name">اسم الحاجز</label>
+            <input id="guest-name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="guest-phone">رقم الهاتف</label>
+            <input id="guest-phone" type="tel" required />
+          </div>
+          <div class="form-group">
+            <label for="guest-email">البريد الإلكتروني</label>
+            <input id="guest-email" type="email" required />
+          </div>
+          <div class="form-group">
+            <label for="guest-notes">ملاحظات إضافية (اختياري)</label>
+            <textarea id="guest-notes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">
+            تأكيد الحجز
+          </button>
+        </form>
+
+        <button class="btn btn-outline full-width hidden" id="modal-ok">
+          إغلاق
+        </button>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close" id="login-modal-close">&times;</button>
+        <h2>تسجيل الدخول</h2>
+        <form id="login-form" class="contact-form" style="margin-top: 0.75rem">
+          <div class="form-group">
+            <label for="login-email">البريد الإلكتروني</label>
+            <input id="login-email" type="email" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">كلمة المرور</label>
+            <input id="login-password" type="password" required />
+          </div>
+          <button type="submit" class="btn btn-primary full-width">
+            تسجيل الدخول
+          </button>
+          <p style="text-align: center; margin-top: 1rem; color: #9ca3af; font-size: 0.85rem">
+            ليس لديك حساب؟ <a href="#" id="switch-to-signup" style="color: #38bdf8; text-decoration: underline">إنشاء حساب جديد</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close" id="signup-modal-close">&times;</button>
+        <h2>إنشاء حساب جديد</h2>
+        <form id="signup-form" class="contact-form" style="margin-top: 0.75rem">
+          <div class="form-group">
+            <label for="signup-name">الاسم الكامل</label>
+            <input id="signup-name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-email">البريد الإلكتروني</label>
+            <input id="signup-email" type="email" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-phone">رقم الهاتف</label>
+            <input id="signup-phone" type="tel" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-password">كلمة المرور</label>
+            <input id="signup-password" type="password" required />
+          </div>
+          <div class="form-group">
+            <label for="signup-confirm-password">تأكيد كلمة المرور</label>
+            <input id="signup-confirm-password" type="password" required />
+          </div>
+          <button type="submit" class="btn btn-primary full-width">
+            إنشاء الحساب
+          </button>
+          <p style="text-align: center; margin-top: 1rem; color: #9ca3af; font-size: 0.85rem">
+            لديك حساب بالفعل؟ <a href="#" id="switch-to-login" style="color: #38bdf8; text-decoration: underline">تسجيل الدخول</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <footer class="main-footer">
+      <div class="container footer-content">
+        <p>this project made by <a href="https://www.linkedin.com/in/moheb-el-azab">Moheb El Azab </a> & <a href="https://www.linkedin.com/in/mazensehsah">Mazen Ehsah</a></p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+  </html>
+
+
+
