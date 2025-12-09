@@ -511,17 +511,56 @@ const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const loginModal = document.getElementById("login-modal");
 const signupModal = document.getElementById("signup-modal");
+const logoutModal = document.getElementById("logout-modal");
 const loginModalClose = document.getElementById("login-modal-close");
 const signupModalClose = document.getElementById("signup-modal-close");
+const logoutModalClose = document.getElementById("logout-modal-close");
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const switchToSignup = document.getElementById("switch-to-signup");
 const switchToLogin = document.getElementById("switch-to-login");
+const logoutCancelBtn = document.getElementById("logout-cancel-btn");
+const logoutConfirmBtn = document.getElementById("logout-confirm-btn");
+const logoutUserInfo = document.getElementById("logout-user-info");
+
+// حالة تسجيل الدخول
+let isLoggedIn = false;
+let currentUser = null;
 
 function openLoginModal() {
+  // إذا كان المستخدم مسجل دخول، افتح نافذة تسجيل الخروج بدلاً من ذلك
+  if (isLoggedIn) {
+    openLogoutModal();
+    return;
+  }
+  
   if (loginModal) {
     loginModal.classList.remove("hidden");
     if (signupModal) signupModal.classList.add("hidden");
+    if (logoutModal) logoutModal.classList.add("hidden");
+  }
+}
+
+function openLogoutModal() {
+  if (logoutModal) {
+    logoutModal.classList.remove("hidden");
+    if (loginModal) loginModal.classList.add("hidden");
+    if (signupModal) signupModal.classList.add("hidden");
+    
+    // عرض معلومات المستخدم إذا كان مسجل دخول
+    if (currentUser) {
+      logoutUserInfo.innerHTML = `
+        مرحباً <strong>${currentUser.name}</strong><br/>
+        <span style="color: #9ca3af; font-size: 0.9rem;">${currentUser.email}</span><br/><br/>
+        هل أنت متأكد من رغبتك في تسجيل الخروج؟
+      `;
+    }
+  }
+}
+
+function closeLogoutModal() {
+  if (logoutModal) {
+    logoutModal.classList.add("hidden");
   }
 }
 
@@ -550,8 +589,44 @@ if (loginBtn) {
   loginBtn.addEventListener("click", openLoginModal);
 }
 
+if (logoutModalClose) {
+  logoutModalClose.addEventListener("click", closeLogoutModal);
+}
+
+if (logoutCancelBtn) {
+  logoutCancelBtn.addEventListener("click", closeLogoutModal);
+}
+
+if (logoutModal) {
+  logoutModal.addEventListener("click", (e) => {
+    if (e.target === logoutModal) closeLogoutModal();
+  });
+}
+
+if (logoutConfirmBtn) {
+  logoutConfirmBtn.addEventListener("click", () => {
+    // تسجيل الخروج
+    isLoggedIn = false;
+    currentUser = null;
+    
+    // تحديث الأزرار
+    if (loginBtn) loginBtn.textContent = "تسجيل دخول";
+    if (signupBtn) signupBtn.textContent = "إنشاء حساب";
+    
+    closeLogoutModal();
+    showToast("تم تسجيل الخروج بنجاح");
+  });
+}
+
 if (signupBtn) {
-  signupBtn.addEventListener("click", openSignupModal);
+  signupBtn.addEventListener("click", () => {
+    // إذا كان المستخدم مسجل دخول، زر "تسجيل الخروج" يفتح نافذة تسجيل الخروج
+    if (isLoggedIn) {
+      openLogoutModal();
+    } else {
+      openSignupModal();
+    }
+  });
 }
 
 if (loginModalClose) {
@@ -602,6 +677,13 @@ if (loginForm) {
     }
 
     // هنا يمكن إضافة منطق تسجيل الدخول الحقيقي
+    // حفظ بيانات المستخدم
+    isLoggedIn = true;
+    currentUser = {
+      name: "المستخدم", // في التطبيق الحقيقي، سيأتي من الاستجابة
+      email: email
+    };
+    
     showToast("تم تسجيل الدخول بنجاح (مثال تجريبي)");
     closeLoginModal();
     
@@ -636,6 +718,14 @@ if (signupForm) {
     }
 
     // هنا يمكن إضافة منطق إنشاء الحساب الحقيقي
+    // حفظ بيانات المستخدم وتسجيل الدخول تلقائياً
+    isLoggedIn = true;
+    currentUser = {
+      name: name,
+      email: email,
+      phone: phone
+    };
+    
     showToast(`تم إنشاء الحساب بنجاح، مرحباً ${name}! (مثال تجريبي)`);
     closeSignupModal();
     
